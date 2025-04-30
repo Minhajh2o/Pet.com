@@ -15,97 +15,102 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap"
         rel="stylesheet">
-    <style>
-        .font-lato {
-            font-family: "Lato", sans-serif;
-        }
-
-        .primary-color {
-            color: #0E7A81;
-            ;
-        }
-
-        .primary-bg {
-            background-color: #0E7A81;
-        }
-    </style>
+    <link rel="stylesheet" href="styles/index.css">
 </head>
-<body class="font-lato">
+<body class="font-lato md:w-4/5 md:mx-auto">
     <header>
-        <div class="navbar flex justify-between bg-base-100 shadow-sm">
+        <div class="navbar flex justify-between">
             <!-- logo -->
             <div class="flex items-center gap-2">
                 <img src="images/logo.webp" alt="Logo">
                 <a class="text-2xl font-extrabold">Pet.com</a>
             </div>
-            <!-- buttons -->
-            <div class="hidden md:flex gap-2">
-                <button class="btn border-0 bg-white">Home</button>
-                <button class="btn border-0 bg-white">Shop</button>
-                <button class="btn border-0 bg-white">Contact</button>
-            </div>
-            <!-- nav end -->
-            <div class="flex gap-2">
-                <!-- hamburger icon -->
-                <div class="dropdown dropdown-end md:hidden">
-                    <div tabindex="0" role="button" class="btn btn-ghost btn-circle">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24"
-                            stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M4 6h16M4 12h16M11.5 18h8" />
-                        </svg>
-                    </div>
-                    <ul tabindex="0"
-                        class="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-40 p-2 shadow">
-                        <li><a class="font-semibold">Home</a></li>
-                        <li><a class="font-semibold">Shop</a></li>
-                        <li><a class="font-semibold">Contact</a></li>
-                    </ul>
+            <div class="flex items-center gap-12">
+                <!-- buttons -->
+                <div class="hidden md:flex gap-2">
+                    <button class="btn border-0 bg-white">Home</button>
+                    <button class="btn border-0 bg-white">Shop</button>
+                    <button class="btn border-0 bg-white">Contact</button>
                 </div>
-                <!-- profile -->
-                <div class="dropdown dropdown-end">
-                    <div tabindex="0">
-                        <div class="w-10 h-10 rounded-full flex items-center">
-                            <i class="fa-sharp fa-solid fa-circle-user fa-2x"></i>
+                <!-- nav end -->
+                <div class="flex gap-2">
+                    <!-- hamburger icon -->
+                    <div class="dropdown dropdown-end md:hidden">
+                        <div tabindex="0" role="button" class="btn btn-ghost btn-circle">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24"
+                                stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M4 6h16M4 12h16M11.5 18h8" />
+                            </svg>
                         </div>
+                        <ul tabindex="0"
+                            class="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-40 p-2 shadow">
+                            <li><a class="font-semibold">Home</a></li>
+                            <li><a class="font-semibold">Shop</a></li>
+                            <li><a class="font-semibold">Contact</a></li>
+                        </ul>
                     </div>
-                    <ul tabindex="0"
-                        class="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow">
-                        <li>
-                            <a class="justify-between">
-                                Profile
-                                <span class="badge">New</span>
-                            </a>
-                        </li>
-                        <li><a>Settings</a></li>
-                        <li><a>Logout</a></li>
-                    </ul>
+                    <!-- profile -->
+                    <div class="dropdown dropdown-end">
+                        <div tabindex="0">
+                            <div class="w-10 h-10 rounded-full flex items-center">
+                                <i class="fa-sharp fa-solid fa-circle-user fa-2x"></i>
+                            </div>
+                        </div>
+                        <ul tabindex="0"
+                            class="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow">
+                            <li>
+                                <a class="justify-between">
+                                    Profile
+                                    <span class="badge">New</span>
+                                </a>
+                            </li>
+                            <li><a>Settings</a></li>
+                            <li><a>Logout</a></li>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </div>
     </header>
     <main class="container mx-auto px-4">
         <section class="flex-col items-center justify-center text-center">
-            <div class="md:w-3/4 lg:w-1/2 mx-auto my-12 space-y-6">
-                <p class="text-2xl font-semibold text-gray-500">Bringing Families Together ❤️‍🔥 </p>
+            <div class="md:w-11/12 lg:w-2/3 mx-auto my-12 space-y-6">
+                <p class="text-2xl font-semibold text-gray-500 mb-6">Bringing Families Together ❤️‍🔥 </p>
                 <h1 class="text-5xl md:text-6xl lg:text-7xl font-extrabold">Where Pets Meet Their Forever Families</h1>
-                <p class="md:text-lg text-gray-600">Welcome to a place where love and companionship begin. Explore heartwarming pet profiles, connect
+                <p class="md:text-lg text-gray-600">Welcome to a place where love and companionship begin. Explore
+                    heartwarming pet profiles, connect
                     with
                     their stories, and take the first step toward giving them a forever home.</p>
                 <button class="btn primary-bg text-white mt-2">View More</button>
             </div>
-            <div class="md:w-3/4 lg:w-1/2 mx-auto mb-24">
+            <div class="md:w-3/4 lg:w-2/3 mx-auto mb-24">
                 <img src="images/pet.webp" alt="">
             </div>
         </section>
         <section>
-            <div class="md:w-2/3 lg:w-2/5 mx-auto my-12 space-y-6 text-center">
+            <div class="md:w-3/4 lg:w-1/2 mx-auto my-12 space-y-6 text-center">
                 <h1 class="text-5xl font-extrabold">Find Your Perfect <br>Pet Companion</h1>
-                <p class="text-gray-600">Discover a variety of pets waiting for a loving home. Each pet has a unique story and personality, ready to bring joy to your life.</p>
+                <p class="text-gray-600">Discover a variety of pets waiting for a loving home. Each pet has a unique
+                    story and personality, ready to bring joy to your life.</p>
             </div>
-            <div id="category-btn-container" class="flex justify-between">
+            <!-- category btn container -->
+            <div id="category-btn-container" class="flex justify-between"></div>
 
+        </section>
+        <!-- sorting section -->
+        <section>
+            <div class="flex justify-between items-center my-8">
+                <p class="text-2xl font-bold">Best deals for you</p>
+                <button class="btn primary-bg text-white mt-2">Sort by Price</button>
             </div>
+            <div class="flex justify-between md:gap-4 lg:gap-6">
+                <div id="card-container" class="flex-1 grid gap-4 md:grid-cols-2 lg:grid-cols-3 border-2 border-red-800"></div>
+                <div class="hidden md:block w-1/4 h-96 border-2 border-blue-800"></div>
+            </div>
+            <!-- card container -->
+            <!-- <div id="card-container" class="grid gap-4 md:grid-cols-2 lg:grid-cols-3"></div> -->
+            ..
         </section>
     </main>
     <footer>

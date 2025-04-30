@@ -1,0 +1,22 @@
+.font-lato {
+    font-family: "Lato", sans-serif;
+}
+
+.primary-color {
+    color: #0E7A81;
+}
+
+.primary-bg {
+    background-color: #0E7A81;
+}
+
+.active {
+    background-color: #0E7A81;
+    color: white;
+}
+
+.primary-stroke {
+    stroke: #0E7A81 !important;
+    fill: #0E7A81 !important;
+    opacity: 1 !important;
+}
