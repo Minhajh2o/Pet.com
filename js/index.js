@@ -78,7 +78,7 @@ const displayPetCards = (pets) => {
                             </svg>
                         </button>
                         <button class="btn primary-color bg-white mt-2 px-6 md:px-4 lg:px-5 py-2 rounded-lg">Adopt</button>
-                        <button class="btn primary-color bg-white mt-2 px-6 md:px-4 lg:px-5 py-2 rounded-lg">Details</button>
+                        <button onclick="loadPetDetails(${pet.petId})" class="btn primary-color bg-white mt-2 px-6 md:px-4 lg:px-5 py-2 rounded-lg">Details</button>
                     </div>
                 </div>
             </div>
@@ -87,28 +87,127 @@ const displayPetCards = (pets) => {
   });
 };
 
+// like pet
 const likeClick = (pets) => {
   pets.forEach((pet) => {
     const likeButton = document.getElementById(`likeCard${pet.petId}`);
     likeButton.addEventListener("click", () => {
-      // change like icon color
+      // Toggle stroke color
       const likeIcon = document.querySelector(`#likeIcon${pet.petId} path`);
       likeIcon.classList.toggle("primary-stroke");
-      // console.log("like" + pet.petId);
-      // add pet to liked pets in favorite section
+
+      // Show/hide no-items message
       const noItems = document.getElementById("no-items");
-      noItems.classList.add("hidden");
       const likedPets = document.getElementById("liked-pets");
-      console.log(likedPets);
-      likedPets.innerHTML += `
-        <figure class="overflow-hidden  rounded-lg">
+
+      // Unique ID for each liked image element
+      const likedPetId = `liked-pet-${pet.petId}`;
+      const existingPet = document.getElementById(likedPetId);
+
+      if (existingPet) {
+        // Already liked, remove it
+        likedPets.removeChild(existingPet);
+      } else {
+        // Not liked yet, add it
+        const petFigure = document.createElement("figure");
+        petFigure.id = likedPetId;
+        petFigure.className = "overflow-hidden rounded-lg";
+        petFigure.innerHTML = `
             <img src="${pet.image}" alt="${pet.category}" class="object-cover w-full h-full" />
-        </figure>
-        `;
+          `;
+        likedPets.appendChild(petFigure);
+      }
+
+      // Show or hide "no-items" message based on count
+      if (likedPets.children.length === 0) {
+        noItems.classList.remove("hidden");
+      } else {
+        noItems.classList.add("hidden");
+      }
     });
-    const likeIcon = document.querySelector(`#likeIcon${pet.petId} path`);
   });
 };
+
+//   load pet details
+const loadPetDetails = (petId) => {
+  fetch(`https://openapi.programming-hero.com/api/peddy/pet/${petId}`)
+    .then((response) => response.json())
+    .then((data) => {
+      // console.log(data.petData.pet_details);
+      displayPetDetails(data.petData);
+    })
+    .catch((error) => console.error("Error fetching data:", error));
+};
+
+// display pet details
+const displayPetDetails = (pet) => {
+  const modalCard = document.getElementById("modal-card");
+  console.log (modalCard);
+ modalCard.innerHTML = `
+    <div class="rounded-xl bg-base-100">
+            <figure class="overflow-hidden rounded-lg shadow-lg">
+                <img src="${pet.image}" alt="${pet.category}" class="object-cover w-full h-full" />
+            </figure>
+    
+            <div class="mt-5">
+                <h2 class="card-title">
+                            ${pet.pet_name}
+                </h2>
+                <div class=" grid grid-cols-2 gap-1 pt-4 pb-4 border-b border-gray-200">
+                    <p class="flex items-center gap-2 text-gray-500 text-base">
+                        <img src="images/icons/Frame.svg" alt="icon" class="w-5 h-5">
+                        Breed: ${pet.breed}
+                    </p>
+                    <p class="flex items-center gap-2 text-gray-500 text-base">
+                        <img src="images/icons/Frame (1).svg" alt="icon" class="w-5 h-5">
+                        Birth: ${pet.date_of_birth}
+                    </p>
+                    <p class="flex items-center gap-2 text-gray-500 text-base">
+                        <img src="images/icons/Frame (2).svg" alt="icon" class="w-5 h-5">
+                        Gender: ${pet.gender}
+                    </p>
+                    <p class="flex items-center gap-2 text-gray-500 text-base">
+                        <img src="images/icons/Frame (3).svg" alt="icon" class="w-5 h-5">
+                        Price: ${pet.price}
+                    </p>
+                    <p class="flex items-center gap-2 text-gray-500 text-base">
+                        <img src="images/icons/Frame (2).svg" alt="icon" class="w-5 h-5">
+                        Vaccinated status: ${pet.vaccinated_status}
+                    </p>
+                </div>
+                <div class="pt-4">
+                    <h5 class="font-semibold">Details information: </h5>
+                    <p class="pb-3">${pet.pet_details}</p>
+                </div>
+            </div>
+        </div>
+    `;
+
+  const detailsModal = document.getElementById("details_modal");
+  detailsModal.showModal();
+};
+
+// const likeClick = (pets) => {
+//   pets.forEach((pet) => {
+//     const likeButton = document.getElementById(`likeCard${pet.petId}`);
+//     likeButton.addEventListener("click", () => {
+//       // change like icon color
+//       const likeIcon = document.querySelector(`#likeIcon${pet.petId} path`);
+//       likeIcon.classList.toggle("primary-stroke");
+//       // add pet to liked pets in favorite section
+//       const noItems = document.getElementById("no-items");
+//       noItems.classList.add("hidden");
+//       const likedPets = document.getElementById("liked-pets");
+//       console.log(likedPets);
+//       likedPets.innerHTML += `
+//         <figure class="overflow-hidden  rounded-lg">
+//             <img src="${pet.image}" alt="${pet.category}" class="object-cover w-full h-full" />
+//         </figure>
+//         `;
+//     });
+//     const likeIcon = document.querySelector(`#likeIcon${pet.petId} path`);
+//   });
+// };
 
 // like
 // const like=(petId)=>{
