@@ -45,9 +45,9 @@
                         </div>
                         <ul tabindex="0"
                             class="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-40 p-2 shadow">
-                            <li><a class="font-semibold">Home</a></li>
-                            <li><a class="font-semibold">Shop</a></li>
-                            <li><a class="font-semibold">Contact</a></li>
+                            <li><a class="text-sm font-medium">Home</a></li>
+                            <li><a class="text-sm font-medium">Shop</a></li>
+                            <li><a class="text-sm font-medium">Contact</a></li>
                         </ul>
                     </div>
                     <!-- profile -->
@@ -60,13 +60,13 @@
                         <ul tabindex="0"
                             class="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow">
                             <li>
-                                <a class="justify-between">
+                                <a class="text-sm justify-between">
                                     Profile
                                     <span class="badge">New</span>
                                 </a>
                             </li>
-                            <li><a>Settings</a></li>
-                            <li><a>Logout</a></li>
+                            <li><a class="text-sm">Settings</a></li>
+                            <li><a class="text-sm">Logout</a></li>
                         </ul>
                     </div>
                 </div>
@@ -101,7 +101,7 @@
         <!-- sorting section -->
         <section>
             <div class="flex justify-between items-center my-8">
-                <p class="text-2xl font-bold">Best deals for you</p>
+                <p class="text-lg md:text-2xl font-bold">Best deals for you</p>
                 <button class="btn primary-bg text-white mt-2">Sort by Price</button>
             </div>
             <div class="flex flex-col md:flex-row justify-between md:gap-4 lg:gap-6">
@@ -117,19 +117,19 @@
                     <div id="liked-pets" class="grid gap-4 grid-cols-2 md:grid-cols-1 lg:grid-cols-2 mt-4"></div>
                 </div>
             </div>
-            <!-- modal -->
-        <!-- Open the modal using ID.showModal() method -->
-        <dialog id="details_modal" class="modal modal-middle">
-            <div class="modal-box">
-                <div id="modal-card"></div><!-- fill from js -->
-                <div class="modal-action">
-                    <form method="dialog" class="w-full">
-                        <button class="btn bg-[#0E7A81]/10 border border-[#0E7A81]/20 primary-color w-full">Close</button>
-                    </form>
-                </div>
-            </div>
-        </dialog>
         </section>
+        <!-- modal -->
+    <!-- Open the modal using ID.showModal() method -->
+    <dialog id="details_modal" class="modal modal-middle">
+        <div class="modal-box">
+            <div id="modal-card"></div><!-- fill from js -->
+            <div class="modal-action">
+                <form method="dialog" class="w-full">
+                    <button class="btn bg-[#0E7A81]/10 border border-[#0E7A81]/20 primary-color w-full">Close</button>
+                </form>
+            </div>
+        </div>
+    </dialog>
     </main>
     <footer class="bg-zinc-900 text-white px-8 py-10">
         <div class="mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
