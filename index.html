@@ -104,13 +104,20 @@
                 <p class="text-2xl font-bold">Best deals for you</p>
                 <button class="btn primary-bg text-white mt-2">Sort by Price</button>
             </div>
-            <div class="flex justify-between md:gap-4 lg:gap-6">
-                <div id="card-container" class="flex-1 grid gap-4 md:grid-cols-2 lg:grid-cols-3 border-2 border-red-800"></div>
-                <div class="hidden md:block w-1/4 h-96 border-2 border-blue-800"></div>
+            <div class="flex flex-col md:flex-row justify-between md:gap-4 lg:gap-6">
+                <!-- pet card container -->
+                <div id="card-container" class="flex-1 grid gap-4 md:grid-cols-2 lg:grid-cols-3"></div>
+                <!-- liked pets container -->
+                <div id="liked-pets-container" class="w-full md:w-1/4 h-full border-2 border-gray-300 rounded-xl p-4  mt-4 md:mt-0">
+                    <p id="like-title" class="text-lg font-extrabold primary-color">Your Favorites</p>
+                    <div id="no-items" class="flex flex-col items-center justify-center text-center gap-4 w-full h-56 mt-12 md:mt-7 lg:mt-12">
+                        <img src="images/no-items-icon.png" alt="" class="w-36 md:w-28 md:h-28 lg:w-36 lg:h-36">
+                        <p class="text-lg text-gray-500 font-bold">Looks like no favorites yet!</p>
+                    </div>
+                    <div id="liked-pets" class="grid gap-4 grid-cols-2 md:grid-cols-1 lg:grid-cols-2 mt-4"></div>
+                </div>
             </div>
-            <!-- card container -->
-            <!-- <div id="card-container" class="grid gap-4 md:grid-cols-2 lg:grid-cols-3"></div> -->
-            ..
+            
         </section>
     </main>
     <footer>
