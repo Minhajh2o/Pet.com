@@ -1,3 +1,6 @@
+const CardContainer = document.getElementById("card-container");
+const emptyCategory = document.getElementById("empty-category");
+
 const loadCategories = () => {
   fetch("https://openapi.programming-hero.com/api/peddy/categories")
     .then((response) => response.json())
@@ -24,31 +27,7 @@ const loadCategoryButtons = (categories) => {
   });
 };
 // load Active Btn and categories
-// const loadActiveBtn = (category) => {
-//   const activeBtn = document.getElementById("category-" + category);
-//   removeActiveClass();
-//   activeBtn.classList.add("active");
-
-//   // Show loader
-//   const loader = document.querySelector(".loader");
-//   loader.style.display = "grid"; // or "block", depending on your layout
-
-//   fetch(`https://openapi.programming-hero.com/api/peddy/category/${category}`)
-//     .then((res) => res.json())
-//     .then((data) => {
-//       // Delay display for 2 seconds
-//       setTimeout(() => {
-//         loader.style.display = "none"; 
-//         displayPetCards(data.data);  
-//       }, 2000);
-//     })
-//     .catch((error) => {
-//       loader.style.display = "none"; 
-//       console.log(error);
-//     });
-// };
 const loadActiveBtn = async (category) => {
-  // Apply active class immediately
   const activeBtn = document.getElementById("category-" + category);
   removeActiveClass();
   activeBtn.classList.add("active");
@@ -60,16 +39,33 @@ const loadActiveBtn = async (category) => {
   try {
     const res = await fetch(`https://openapi.programming-hero.com/api/peddy/category/${category}`);
     const data = await res.json();
-
+  
+    // Show loader (if not already visible)
+    loader.style.display = "grid";
+  
     setTimeout(() => {
       loader.style.display = "none";
-      displayPetCards(data.data);
+  
+      // Handle empty category
+      if (!data.data || data.data.length === 0) {
+        emptyCategory.classList.remove("hidden");
+        emptyCategory.classList.add("flex");
+  
+        CardContainer.classList.add("hidden");
+        CardContainer.classList.remove("grid");
+      } else {
+        emptyCategory.classList.add("hidden");
+        emptyCategory.classList.remove("flex");
+  
+        displayPetCards(data.data);
+        likeClick(data.data);
+      }
     }, 2000);
-
+  
   } catch (error) {
     loader.style.display = "none";
     console.error("Failed to load pets:", error);
-  }
+  }  
 };
 
 
@@ -135,7 +131,7 @@ sortBtn.addEventListener("change", function () {
   loader.style.display = "grid";
 
   setTimeout(() => {
-    if (loader) loader.style.display = "none";
+    loader.style.display = "none";
     displayPetCards(sortedPets);
     likeClick(sortedPets);
   }, 2000); 
@@ -143,7 +139,9 @@ sortBtn.addEventListener("change", function () {
 
 // display pet cards
 const displayPetCards = (pets) => {
-  const CardContainer = document.getElementById("card-container");
+  CardContainer.classList.remove("hidden");
+  CardContainer.classList.add("grid");
+
   CardContainer.innerHTML = "";
   pets.forEach((pet) => {
     const petCard = document.createElement("div");
@@ -241,7 +239,7 @@ const loadPetDetails = (petId) => {
     .catch((error) => console.error("Error fetching data:", error));
 };
 
-// display pet details
+// display pet details in modal
 const displayPetDetails = (pet) => {
   const modalCard = document.getElementById("modal-card");
   modalCard.innerHTML = `

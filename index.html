@@ -73,7 +73,7 @@
             </div>
         </div>
     </header>
-    <main class="container md:w-4/5 mx-auto px-4 md:px-0 mb-12 md:mb-24">
+    <main class="container md:w-4/5 mx-auto px-4 md:px-0 mb-12 md:mb-12">
         <section class="flex-col items-center justify-center text-center">
             <div class="md:w-11/12 lg:w-2/3 mx-auto my-12 space-y-6">
                 <p class="text-xl md:text-2xl font-semibold text-gray-500 mb-6">Bringing Families Together ❤️‍🔥 </p>
@@ -119,11 +119,24 @@
 
             <!-- API -->
             <div class="flex flex-col md:flex-row justify-between md:gap-4 lg:gap-6">
+                <!-- Empty category message -->
+                <div id="empty-category"
+                    class=" hidden min-h-[350px] flex-1 items-center justify-center rounded-xl bg-slate-100">
+                    <div class="text-center px-4">
+                        <img src="images/error.webp" alt="No data illustration"
+                            class="mx-auto w-28 h-28 md:w-32 md:h-32 lg:w-40 lg:h-40" />
+                        <h3 class="text-2xl md:text-3xl font-bold mt-6 mb-2">No Information Available</h3>
+                        <p class="text-gray-500 text-base md:text-lg">
+                            Sorry, we couldn't find any pets in this category. Please try another one.
+                        </p>
+                    </div>
+                </div>
+
                 <!-- pet card container -->
-                <div id="card-container" class="flex-1 grid gap-4 md:grid-cols-2 lg:grid-cols-3"></div>
+                <div id="card-container" class="hidden flex-1 gap-4 md:grid-cols-2 lg:grid-cols-3"></div>
                 <!-- liked pets container -->
                 <div id="liked-pets-container"
-                    class="w-full md:w-1/4 h-full border-2 border-gray-300 rounded-xl p-4  mt-4 md:mt-0">
+                    class="w-full md:w-1/4 h-full border-2 border-gray-200 rounded-xl p-4  mt-4 md:mt-0">
                     <p id="like-title" class="text-lg font-extrabold primary-color">Your Favorites</p>
                     <div id="no-items"
                         class="flex flex-col items-center justify-center text-center gap-4 w-full h-56 mt-12 md:mt-7 lg:mt-12">
