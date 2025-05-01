@@ -8,9 +8,7 @@ const loadCategories = () => {
 // load Category Buttons
 const loadCategoryButtons = (categories) => {
   // console.log(categories);
-  const categoryBtnContainer = document.getElementById(
-    "category-btn-container"
-  );
+  const categoryBtnContainer = document.getElementById("category-btn-container");
   categories.forEach((item) => {
     const categoryContainer = document.createElement("div");
     categoryContainer.innerHTML = `
@@ -28,16 +26,58 @@ const loadActiveBtn = (categoryId) => {
 };
 
 // load pet cards
+// const loadPetCards = () => {
+//   fetch(`https://openapi.programming-hero.com/api/peddy/pets`)
+//     .then((response) => response.json())
+//     .then((data) => {
+//       // console.log(data.pets);
+//       displayPetCards(data.pets);
+//       likeClick(data.pets);
+//     })
+//     .catch((error) => console.error("Error fetching data:", error));
+// };
+
+let allPets = []; // will store the fetched pet data
+
+// Load pet cards from API
 const loadPetCards = () => {
   fetch(`https://openapi.programming-hero.com/api/peddy/pets`)
     .then((response) => response.json())
     .then((data) => {
-      // console.log(data.pets);
-      displayPetCards(data.pets);
-      likeClick(data.pets);
+      allPets = data.pets;
+      displayPetCards(allPets);
+      likeClick(allPets);
     })
     .catch((error) => console.error("Error fetching data:", error));
 };
+
+// sort by price (changed the style with the help of ai)
+const sortBtn = document.getElementById('sort-price');
+
+const applyPrimaryStyle = () => {
+  sortBtn.classList.add('primary-bg', 'text-white');
+};
+
+applyPrimaryStyle(); // initial style
+
+sortBtn.addEventListener('change', function () {
+  applyPrimaryStyle();
+
+  const selected = this.value;
+  let sortedPets = [...allPets];
+
+  if (selected === 'high') {
+    sortedPets.sort((a, b) => parseFloat(b.price) - parseFloat(a.price));
+  } else if (selected === 'low') {
+    sortedPets.sort((a, b) => parseFloat(a.price) - parseFloat(b.price));
+  } else if (selected === 'default') {
+    sortedPets = [...allPets];
+  }
+
+  displayPetCards(sortedPets);
+  likeClick(sortedPets);
+});
+
 
 // display pet cards
 const displayPetCards = (pets) => {
@@ -142,7 +182,6 @@ const loadPetDetails = (petId) => {
 // display pet details
 const displayPetDetails = (pet) => {
   const modalCard = document.getElementById("modal-card");
-  console.log (modalCard);
  modalCard.innerHTML = `
     <div class="rounded-xl bg-base-100">
             <figure class="overflow-hidden rounded-lg shadow-lg">

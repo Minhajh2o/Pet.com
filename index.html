@@ -102,15 +102,35 @@
         <section>
             <div class="flex justify-between items-center my-8">
                 <p class="text-lg md:text-2xl font-bold">Best deals for you</p>
-                <button class="btn primary-bg text-white mt-2">Sort by Price</button>
+                <!-- <button id="sort-by-price" class="btn primary-bg text-white mt-2">Sort by Price</button> -->
+                <!-- <div class="relative inline-block">
+                    <select id="sort-price" class="select select-bordered bg-white primary-color w-full">
+                        <option value="default" selected disabled hidden>Sort by</option>
+                        <option value="default">Default</option>
+                        <option value="high">Price: High to Low</option>
+                        <option value="low">Price: Low to High</option>
+                    </select>
+                </div> -->
+                <div class="relative inline-block mt-2">
+                    <select id="sort-price" class="select w-full px-4 py-2 rounded-md transition-all">
+                        <option value="default" selected disabled hidden>Sort by</option>
+                        <option value="default" class="bg-white text-[#0E7A81]">Default</option>
+                        <option value="high" class="bg-white text-[#0E7A81]">Price: High to Low</option>
+                        <option value="low" class="bg-white text-[#0E7A81]">Price: Low to High</option>
+                    </select>
+                </div>
+
+
             </div>
             <div class="flex flex-col md:flex-row justify-between md:gap-4 lg:gap-6">
                 <!-- pet card container -->
                 <div id="card-container" class="flex-1 grid gap-4 md:grid-cols-2 lg:grid-cols-3"></div>
                 <!-- liked pets container -->
-                <div id="liked-pets-container" class="w-full md:w-1/4 h-full border-2 border-gray-300 rounded-xl p-4  mt-4 md:mt-0">
+                <div id="liked-pets-container"
+                    class="w-full md:w-1/4 h-full border-2 border-gray-300 rounded-xl p-4  mt-4 md:mt-0">
                     <p id="like-title" class="text-lg font-extrabold primary-color">Your Favorites</p>
-                    <div id="no-items" class="flex flex-col items-center justify-center text-center gap-4 w-full h-56 mt-12 md:mt-7 lg:mt-12">
+                    <div id="no-items"
+                        class="flex flex-col items-center justify-center text-center gap-4 w-full h-56 mt-12 md:mt-7 lg:mt-12">
                         <img src="images/no-items-icon.png" alt="" class="w-36 md:w-28 md:h-28 lg:w-36 lg:h-36">
                         <p class="text-lg text-gray-500 font-bold">Looks like no favorites yet!</p>
                     </div>
@@ -119,67 +139,65 @@
             </div>
         </section>
         <!-- modal -->
-    <!-- Open the modal using ID.showModal() method -->
-    <dialog id="details_modal" class="modal modal-middle">
-        <div class="modal-box">
-            <div id="modal-card"></div><!-- fill from js -->
-            <div class="modal-action">
-                <form method="dialog" class="w-full">
-                    <button class="btn bg-[#0E7A81]/10 border border-[#0E7A81]/20 primary-color w-full">Close</button>
-                </form>
+        <!-- Open the modal using ID.showModal() method -->
+        <dialog id="details_modal" class="modal modal-middle">
+            <div class="modal-box">
+                <div id="modal-card"></div><!-- fill from js -->
+                <div class="modal-action">
+                    <form method="dialog" class="w-full">
+                        <button
+                            class="btn bg-[#0E7A81]/10 border border-[#0E7A81]/20 primary-color w-full">Close</button>
+                    </form>
+                </div>
             </div>
-        </div>
-    </dialog>
+        </dialog>
     </main>
     <footer class="bg-zinc-900 text-white px-8 py-10">
         <div class="md:w-4/5 mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
-          <!-- Left Column -->
-          <div>
-            <div class="flex items-center gap-2">
-                <img src="images/logo.webp" alt="Logo">
-                <a class="text-2xl font-extrabold">Pet.com</a>
+            <!-- Left Column -->
+            <div>
+                <div class="flex items-center gap-2">
+                    <img src="images/logo.webp" alt="Logo">
+                    <a class="text-2xl font-extrabold">Pet.com</a>
+                </div>
+                <p class="mt-4 text-sm text-gray-400">Location: av. Washington 165, NY CA 54003</p>
+                <p class="text-sm text-gray-400">Phone: +31 85 964 47 25</p>
+                <p class="text-sm text-gray-400">Email: info@yourdomain.com</p>
+                <p class="text-sm text-gray-400">Opening hours: 9.00 AM - 5.00 PM</p>
+
+                <!-- Social Icons -->
+                <div class="flex space-x-4 mt-4">
+                    <a href="#" class="text-white text-xl"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="text-white text-xl"><i class="fab fa-x-twitter"></i></a>
+                    <a href="#" class="text-white text-xl"><i class="fab fa-youtube"></i></a>
+                    <a href="#" class="text-white text-xl"><i class="fab fa-instagram"></i></a>
+                </div>
             </div>
-            <p class="mt-4 text-sm text-gray-400">Location: av. Washington 165, NY CA 54003</p>
-            <p class="text-sm text-gray-400">Phone: +31 85 964 47 25</p>
-            <p class="text-sm text-gray-400">Email: info@yourdomain.com</p>
-            <p class="text-sm text-gray-400">Opening hours: 9.00 AM - 5.00 PM</p>
-      
-            <!-- Social Icons -->
-            <div class="flex space-x-4 mt-4">
-              <a href="#" class="text-white text-xl"><i class="fab fa-facebook-f"></i></a>
-              <a href="#" class="text-white text-xl"><i class="fab fa-x-twitter"></i></a>
-              <a href="#" class="text-white text-xl"><i class="fab fa-youtube"></i></a>
-              <a href="#" class="text-white text-xl"><i class="fab fa-instagram"></i></a>
+
+            <!-- Center Column -->
+            <div>
+                <h3 class="text-md font-semibold mb-4">Useful Links</h3>
+                <ul class="space-y-2 text-sm">
+                    <li><a href="#" class="hover:underline text-gray-400">Home</a></li>
+                    <li><a href="#" class="hover:underline text-gray-400">About Us</a></li>
+                    <li><a href="#" class="hover:underline text-gray-400">Animals</a></li>
+                    <li><a href="#" class="hover:underline text-gray-400">Foundation</a></li>
+                    <li><a href="#" class="hover:underline text-gray-400">Contact</a></li>
+                </ul>
             </div>
-          </div>
-      
-          <!-- Center Column -->
-          <div>
-            <h3 class="text-md font-semibold mb-4">Useful Links</h3>
-            <ul class="space-y-2 text-sm">
-              <li><a href="#" class="hover:underline text-gray-400">Home</a></li>
-              <li><a href="#" class="hover:underline text-gray-400">About Us</a></li>
-              <li><a href="#" class="hover:underline text-gray-400">Animals</a></li>
-              <li><a href="#" class="hover:underline text-gray-400">Foundation</a></li>
-              <li><a href="#" class="hover:underline text-gray-400">Contact</a></li>
-            </ul>
-          </div>
-      
-          <!-- Right Column -->
-          <div>
-            <h3 class="text-md font-semibold mb-4">Drop a Message</h3>
-            <input
-              type="email"
-              placeholder="Enter your email"
-              class="w-full px-4 py-2 bg-zinc-800 text-white rounded mb-3 outline-none"
-            />
-            <button class="w-full primary-bg text-white py-2 rounded">
-              Subscribe
-            </button>
-          </div>
+
+            <!-- Right Column -->
+            <div>
+                <h3 class="text-md font-semibold mb-4">Drop a Message</h3>
+                <input type="email" placeholder="Enter your email"
+                    class="w-full px-4 py-2 bg-zinc-800 text-white rounded mb-3 outline-none" />
+                <button class="w-full primary-bg text-white py-2 rounded">
+                    Subscribe
+                </button>
+            </div>
         </div>
-      </footer>
-      
+    </footer>
+
     <script src="js/index.js"></script>
 </body>
 </html>
