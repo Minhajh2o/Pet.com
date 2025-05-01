@@ -177,7 +177,7 @@ const displayPetDetails = (pet) => {
                 </div>
                 <div class="pt-4">
                     <h5 class="font-semibold">Details information: </h5>
-                    <p class="pb-3">${pet.pet_details}</p>
+                    <p class="pt-3">${pet.pet_details}</p>
                 </div>
             </div>
         </div>
