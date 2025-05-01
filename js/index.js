@@ -8,11 +8,14 @@ const loadCategories = () => {
 // load Category Buttons
 const loadCategoryButtons = (categories) => {
   // console.log(categories);
-  const categoryBtnContainer = document.getElementById("category-btn-container");
+  const categoryBtnContainer = document.getElementById(
+    "category-btn-container"
+  );
   categories.forEach((item) => {
     const categoryContainer = document.createElement("div");
+    const categoryInLC = item.category.toLowerCase();
     categoryContainer.innerHTML = `
-            <a id="category-${item.id}" onclick="loadActiveBtn(${item.id})" class="flex items-center justify-center gap-2 md:gap-3 px-4 py-2 md:w-[168px] lg:w-[280px] rounded-lg border-2 border-gray-200 hover:bg-gray-100 transition duration-200 ease-in-out">
+            <a id="category-${categoryInLC}" onclick="loadActiveBtn('${categoryInLC}')" class="flex items-center justify-center gap-2 md:gap-3 px-3 md:px-4 py-2 md:w-[168px] lg:w-[280px] rounded-lg border-2 border-gray-200 hover:bg-gray-100 transition duration-200 ease-in-out">
             <img src="${item.category_icon}" alt="${item.category}" class="w-6 h-6 md:w-12 md:h-12">
             <p class="md:text-xl font-semibold">${item.category}</p>
             </a>
@@ -20,9 +23,62 @@ const loadCategoryButtons = (categories) => {
     categoryBtnContainer.append(categoryContainer);
   });
 };
-// load Active Btn
-const loadActiveBtn = (categoryId) => {
-  console.log("category-" + categoryId);
+// load Active Btn and categories
+// const loadActiveBtn = (category) => {
+//   const activeBtn = document.getElementById("category-" + category);
+//   removeActiveClass();
+//   activeBtn.classList.add("active");
+
+//   // Show loader
+//   const loader = document.querySelector(".loader");
+//   loader.style.display = "grid"; // or "block", depending on your layout
+
+//   fetch(`https://openapi.programming-hero.com/api/peddy/category/${category}`)
+//     .then((res) => res.json())
+//     .then((data) => {
+//       // Delay display for 2 seconds
+//       setTimeout(() => {
+//         loader.style.display = "none"; 
+//         displayPetCards(data.data);  
+//       }, 2000);
+//     })
+//     .catch((error) => {
+//       loader.style.display = "none"; 
+//       console.log(error);
+//     });
+// };
+const loadActiveBtn = async (category) => {
+  // Apply active class immediately
+  const activeBtn = document.getElementById("category-" + category);
+  removeActiveClass();
+  activeBtn.classList.add("active");
+
+  // Show loader
+  const loader = document.querySelector(".loader");
+  loader.style.display = "grid";
+
+  try {
+    const res = await fetch(`https://openapi.programming-hero.com/api/peddy/category/${category}`);
+    const data = await res.json();
+
+    setTimeout(() => {
+      loader.style.display = "none";
+      displayPetCards(data.data);
+    }, 2000);
+
+  } catch (error) {
+    loader.style.display = "none";
+    console.error("Failed to load pets:", error);
+  }
+};
+
+
+// remove active class from all buttons
+const removeActiveClass = () => {
+  const activeBtn = document.querySelector(".active");
+  if (activeBtn) {
+    activeBtn.classList.remove("active");
+  }
 };
 
 // load pet cards
@@ -52,32 +108,38 @@ const loadPetCards = () => {
 };
 
 // sort by price (changed the style with the help of ai)
-const sortBtn = document.getElementById('sort-price');
+const sortBtn = document.getElementById("sort-price");
 
 const applyPrimaryStyle = () => {
-  sortBtn.classList.add('primary-bg', 'text-white');
+  sortBtn.classList.add("primary-bg", "text-white");
 };
 
 applyPrimaryStyle(); // initial style
 
-sortBtn.addEventListener('change', function () {
+sortBtn.addEventListener("change", function () {
   applyPrimaryStyle();
 
   const selected = this.value;
   let sortedPets = [...allPets];
 
-  if (selected === 'high') {
+  if (selected === "high") {
     sortedPets.sort((a, b) => parseFloat(b.price) - parseFloat(a.price));
-  } else if (selected === 'low') {
+  } else if (selected === "low") {
     sortedPets.sort((a, b) => parseFloat(a.price) - parseFloat(b.price));
-  } else if (selected === 'default') {
+  } else if (selected === "default") {
     sortedPets = [...allPets];
   }
 
-  displayPetCards(sortedPets);
-  likeClick(sortedPets);
-});
+  // Show loader
+  const loader = document.querySelector(".loader");
+  loader.style.display = "grid";
 
+  setTimeout(() => {
+    if (loader) loader.style.display = "none";
+    displayPetCards(sortedPets);
+    likeClick(sortedPets);
+  }, 2000); 
+});
 
 // display pet cards
 const displayPetCards = (pets) => {
@@ -182,7 +244,7 @@ const loadPetDetails = (petId) => {
 // display pet details
 const displayPetDetails = (pet) => {
   const modalCard = document.getElementById("modal-card");
- modalCard.innerHTML = `
+  modalCard.innerHTML = `
     <div class="rounded-xl bg-base-100">
             <figure class="overflow-hidden rounded-lg shadow-lg">
                 <img src="${pet.image}" alt="${pet.category}" class="object-cover w-full h-full" />
