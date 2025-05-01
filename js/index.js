@@ -164,10 +164,8 @@ const displayPetCards = (pets) => {
                   class="${isLiked ? "primary-stroke" : ""}" />
               </svg>
             </button>
-            <button class="btn bg-white primary-color mt-3 px-6 py-2 rounded-lg">Adopt</button>
-            <button onclick="loadPetDetails(${
-              pet.petId
-            })" class="btn bg-white primary-color mt-3 px-6 py-2 rounded-lg">Details</button>
+            <button onclick="adoptPet('${pet.pet_name}', this)" class="btn bg-white primary-color mt-3 px-5 py-2 rounded-lg">Adopt</button>
+            <button onclick="loadPetDetails(${pet.petId})" class="btn bg-white primary-color mt-3 px-5 py-2 rounded-lg">Details</button>
           </div>
         </div>
       </div>
@@ -275,34 +273,46 @@ const displayPetDetails = (pet) => {
   detailsModal.showModal();
 };
 
-// const likeClick = (pets) => {
-//   pets.forEach((pet) => {
-//     const likeButton = document.getElementById(`likeCard${pet.petId}`);
-//     likeButton.addEventListener("click", () => {
-//       // change like icon color
-//       const likeIcon = document.querySelector(`#likeIcon${pet.petId} path`);
-//       likeIcon.classList.toggle("primary-stroke");
-//       // add pet to liked pets in favorite section
-//       const noItems = document.getElementById("no-items");
-//       noItems.classList.add("hidden");
-//       const likedPets = document.getElementById("liked-pets");
-//       console.log(likedPets);
-//       likedPets.innerHTML += `
-//         <figure class="overflow-hidden  rounded-lg">
-//             <img src="${pet.image}" alt="${pet.category}" class="object-cover w-full h-full" />
-//         </figure>
-//         `;
-//     });
-//     const likeIcon = document.querySelector(`#likeIcon${pet.petId} path`);
-//   });
-// };
+const adoptPet = (petName, btnElement) => {
+  const modal = document.getElementById("adopt_modal");
+  const modalCard = document.getElementById("adopt-modal-card");
 
-// like
-// const like=(petId)=>{
-//     const likeIcon = document.querySelector(`#likeIcon${petId} path`);
-//     likeIcon.classList.toggle("primary-stroke");
-//     console.log('like' + petId);
-// }
+  let countdown = 3;
+
+  modalCard.innerHTML = `
+    <div class="flex flex-col items-center justify-center text-center px-4 py-6">
+      <img src="images/handshake.png" alt="icon" class="w-16 h-16 mx-auto">
+      <h2 class="text-3xl font-extrabold mt-5">Congratulations 🎉</h2>
+      <p class="text-lg text-gray-500 mt-4">Adoption process begins for your pet</p>
+      <p class="text-2xl font-extrabold mt-4">${petName}</p>
+      <p id="count-down" class="text-6xl font-extrabold mt-6">${countdown}</p>
+    </div>
+  `;
+
+  modal.showModal();
+
+  const countDownElement = modalCard.querySelector("#count-down");
+
+  const timer = setInterval(() => {
+    countdown--;
+    if (countdown > 0) {
+      countDownElement.textContent = `${countdown}`;
+    } else {
+      clearInterval(timer);
+      modal.close();
+
+      // ✅ Disable and update button
+      if (btnElement) {
+        btnElement.disabled = true;
+        btnElement.textContent = "Adopted";
+        btnElement.classList.add("bg-gray-300", "cursor-not-allowed", "text-gray-500");
+        btnElement.classList.remove("primary-color", "bg-white");
+      }
+    }
+  }, 1000);
+};
+
+
 
 loadCategories();
 loadPetCards();
