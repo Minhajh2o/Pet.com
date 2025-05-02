@@ -1,6 +1,9 @@
 .font-lato {
     font-family: "Lato", sans-serif;
 }
+html {
+  scroll-behavior: smooth;
+}
 
 .primary-color {
     color: #0E7A81;

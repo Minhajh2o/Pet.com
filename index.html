@@ -28,9 +28,9 @@
             <div class="flex items-center gap-12">
                 <!-- buttons -->
                 <div class="hidden md:flex gap-2">
-                    <button class="btn border-0 bg-white">Home</button>
-                    <button class="btn border-0 bg-white">Shop</button>
-                    <button class="btn border-0 bg-white">Contact</button>
+                    <a href="#" class="btn border-0 bg-white">Home</a>
+                    <a href="#find-pet" class="btn border-0 bg-white">Shop</a>
+                    <a href="#footer" class="btn border-0 bg-white">Contact</a>
                 </div>
                 <!-- nav end -->
                 <div class="flex gap-2">
@@ -45,9 +45,9 @@
                         </div>
                         <ul tabindex="0"
                             class="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-40 p-2 shadow">
-                            <li><a class="text-sm font-medium">Home</a></li>
-                            <li><a class="text-sm font-medium">Shop</a></li>
-                            <li><a class="text-sm font-medium">Contact</a></li>
+                            <li><a href="#" class="text-sm font-medium">Home</a></li>
+                            <li><a href="#find-pet" class="text-sm font-medium">Shop</a></li>
+                            <li><a href="#footer" class="text-sm font-medium">Contact</a></li>
                         </ul>
                     </div>
                     <!-- profile -->
@@ -74,6 +74,7 @@
         </div>
     </header>
     <main class="container md:w-4/5 mx-auto px-4 md:px-0 mb-12 md:mb-12">
+        <!-- banner section -->
         <section class="flex-col items-center justify-center text-center">
             <div class="md:w-11/12 lg:w-2/3 mx-auto my-12 space-y-6">
                 <p class="text-xl md:text-2xl font-semibold text-gray-500 mb-6">Bringing Families Together ❤️‍🔥 </p>
@@ -82,13 +83,14 @@
                     heartwarming pet profiles, connect
                     with
                     their stories, and take the first step toward giving them a forever home.</p>
-                <button class="btn primary-bg text-white mt-2">View More</button>
+                <a href="#find-pet" class="btn primary-bg text-white mt-2">View More</a>
             </div>
             <div class="md:w-3/4 lg:w-2/3 mx-auto mb-24">
                 <img src="images/pet.webp" alt="">
             </div>
         </section>
-        <section>
+        <!-- find pet section -->
+        <section id="find-pet">
             <div class="md:w-3/4 lg:w-1/2 mx-auto my-12 space-y-6 text-center">
                 <h1 class="text-5xl font-extrabold">Find Your Perfect <br>Pet Companion</h1>
                 <p class="text-gray-600">Discover a variety of pets waiting for a loving home. Each pet has a unique
@@ -170,7 +172,7 @@
             </dialog>
         </section>
     </main>
-    <footer class="bg-zinc-900 text-white px-8 py-10">
+    <footer id="footer" class="bg-zinc-900 text-white px-8 py-12">
         <div class="md:w-4/5 mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
             <!-- Left Column -->
             <div>
