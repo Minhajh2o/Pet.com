@@ -288,7 +288,7 @@ const adoptPet = (petName, btnElement) => {
       <img src="images/handshake.png" alt="icon" class="w-16 h-16 mx-auto">
       <h2 class="text-3xl font-extrabold mt-5">Congratulations 🎉</h2>
       <p class="text-lg text-gray-500 mt-4">Adoption process begins for your pet</p>
-      <p class="text-2xl font-extrabold mt-4">${petName}</p> // no name then hide this line
+      <p class="text-2xl font-extrabold mt-4">${petName}</p>
       <p id="count-down" class="text-6xl font-extrabold mt-6">${countdown}</p>
     </div>
   `;
